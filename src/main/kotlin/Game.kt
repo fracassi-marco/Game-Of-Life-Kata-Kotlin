@@ -12,52 +12,21 @@ class Game(private val initialGeneration: String) {
             val line = mutableListOf<String>()
             nextGenerationBoard.add(line)
             for (j in 0 until initialGenerationBoard[i].size) {
-                if (initialGenerationBoard[i][j] == "." && countNeighboursOf(initialGenerationBoard, i, j) == 3) {
+                val countLiveNeighboursOf = Board(initialGenerationBoard).countNeighboursOf(i, j, "*")
+                if (initialGenerationBoard[i][j] == "." && countLiveNeighboursOf == 3) {
                     line.add("*")
+                } else if (initialGenerationBoard[i][j] == "*" && countLiveNeighboursOf == 1) {
+                    line.add(".")
                 } else {
                     line.add(initialGenerationBoard[i][j])
                 }
             }
         }
 
-        return nextGenerationBoard.joinToString(separator = "\n") { it.joinToString("") }
+        return format(nextGenerationBoard)
     }
 
-    private fun countNeighboursOf(board: MutableList<List<String>>, row: Int, column: Int): Int {
-        var count = 0
-        try {
-            if (board[row + 1][column] == "*") count++
-        } catch (e: Exception) {
-        }
-        try {
-            if (board[row + 1][column + 1] == "*") count++
-        } catch (e: Exception) {
-        }
-        try {
-            if (board[row][column + 1] == "*") count++
-        } catch (e: Exception) {
-        }
-        try {
-            if (board[row - 1][column] == "*") count++
-        } catch (e: Exception) {
-        }
-        try {
-            if (board[row - 1][column - 1] == "*") count++
-        } catch (e: Exception) {
-        }
-        try {
-            if (board[row - 1][column + 1] == "*") count++
-        } catch (e: Exception) {
-        }
-        try {
-            if (board[row + 1][column - 1] == "*") count++
-        } catch (e: Exception) {
-        }
-        try {
-            if (board[row][column - 1] == "*") count++
-        } catch (e: Exception) {
-        }
-
-        return count
-    }
+    private fun format(nextGenerationBoard: MutableList<List<String>>) =
+        nextGenerationBoard.joinToString(separator = "\n") { it.joinToString("") }
 }
+

@@ -16,7 +16,3 @@ When calculating the next generation of the grid, follow these rules:
 
 You should write a program that can accept an arbitrary grid of cells, and will output a similar grid showing the next generation.
 
-## Build and run
-```
-./gradlew clean build && java -jar build/libs/GameOfLife-1.jar
-```

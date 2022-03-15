@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 class GameTest {
 
     @Test
-    fun `top left dead cell becomes a live cell`() {
+    fun `any dead cell with exactly three live neighbours becomes a live cell`() {
         val nextGeneration = Game(
             ".*\n" +
             "**"
@@ -18,20 +18,19 @@ class GameTest {
     }
 
     @Test
-    fun `top right dead cell becomes a live cell`() {
+    fun `any live cell with fewer than two live neighbours dies`() {
         val nextGeneration = Game(
             "*.\n" +
-            "**"
+            ".."
         ).nextGeneration()
 
         assertThat(nextGeneration).isEqualTo(
-            "**\n" +
-            "**"
+            "..\n" +
+            ".."
         )
     }
 
     @Test
-    @Disabled
     fun acceptanceTest() {
         val nextGeneration = Game(
             """........
