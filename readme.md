@@ -16,3 +16,13 @@ When calculating the next generation of the grid, follow these rules:
 
 You should write a program that can accept an arbitrary grid of cells, and will output a similar grid showing the next generation.
 
+## How to run application
+To start game with 80x30 board:
+```
+./gradlew run
+```
+
+## How to run tests
+```
+./gradlew test
+```
