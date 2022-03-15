@@ -1,5 +1,4 @@
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 class GameTest {
@@ -27,6 +26,19 @@ class GameTest {
         assertThat(nextGeneration).isEqualTo(
             "..\n" +
             ".."
+        )
+    }
+
+    @Test
+    fun `any live cell with more than three live neighbours dies`() {
+        val nextGeneration = Game(
+            "***\n" +
+            "***"
+        ).nextGeneration()
+
+        assertThat(nextGeneration).isEqualTo(
+            "*.*\n" +
+            "*.*"
         )
     }
 

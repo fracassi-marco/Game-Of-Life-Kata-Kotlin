@@ -51,4 +51,28 @@ class BoardTest {
 
         assertThat(count).isEqualTo(3)
     }
+
+    @Test
+    fun `rectangular matrix`() {
+        val board = listOf(
+            listOf("*", "*", "*"),
+            listOf("*", "*", "*")
+        )
+
+        val count = Board(board).countNeighboursOf(0, 1, "*")
+
+        assertThat(count).isEqualTo(5)
+    }
+
+    @Test
+    fun `do not count itself`() {
+        val board = listOf(
+            listOf("*", "*", "*"),
+            listOf("*", "*", "*")
+        )
+
+        val count = Board(board).countNeighboursOf(0, 2, "*")
+
+        assertThat(count).isEqualTo(3)
+    }
 }

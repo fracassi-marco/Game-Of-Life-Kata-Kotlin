@@ -15,7 +15,9 @@ class Game(private val initialGeneration: String) {
                 val countLiveNeighboursOf = Board(initialGenerationBoard).countNeighboursOf(i, j, "*")
                 if (initialGenerationBoard[i][j] == "." && countLiveNeighboursOf == 3) {
                     line.add("*")
-                } else if (initialGenerationBoard[i][j] == "*" && countLiveNeighboursOf == 1) {
+                } else if (initialGenerationBoard[i][j] == "*" && countLiveNeighboursOf < 2) {
+                    line.add(".")
+                } else if (initialGenerationBoard[i][j] == "*" && countLiveNeighboursOf > 3) {
                     line.add(".")
                 } else {
                     line.add(initialGenerationBoard[i][j])
