@@ -43,7 +43,22 @@ class GameTest {
     }
 
     @Test
-    fun acceptanceTest() {
+    fun `live cell with two or three live neighbours lives on to the next generation`() {
+        val nextGeneration = Game(
+            ".*.\n" +
+            ".*.\n" +
+            ".*."
+        ).nextGeneration()
+
+        assertThat(nextGeneration).isEqualTo(
+            "...\n" +
+            "***\n" +
+            "..."
+        )
+    }
+
+    @Test
+    fun `acceptance test`() {
         val nextGeneration = Game(
             """........
                ....*...
