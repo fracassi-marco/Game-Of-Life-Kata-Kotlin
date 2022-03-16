@@ -60,17 +60,17 @@ class GameTest {
     @Test
     fun `acceptance test`() {
         val nextGeneration = Game(
-            """........
-               ....*...
-               ...**...
-               ........""".trimIndent()
+            "........\n" +
+            "....*...\n" +
+            "...**...\n" +
+            "........"
         ).nextGeneration()
 
         assertThat(nextGeneration).isEqualTo(
-            """........
-               ...**...
-               ...**...
-               ........""".trimIndent()
+            "........\n" +
+            "...**...\n" +
+            "...**...\n" +
+            "........"
         )
     }
 }

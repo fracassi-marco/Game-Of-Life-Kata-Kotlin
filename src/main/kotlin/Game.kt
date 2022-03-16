@@ -12,16 +12,13 @@ class Game(private val initialGeneration: String) {
             val line = mutableListOf<String>()
             nextGenerationBoard.add(line)
             for (j in 0 until initialGenerationBoard[i].size) {
-                val countLiveNeighboursOf = Board(initialGenerationBoard).countNeighboursOf(i, j, "*")
-                if (initialGenerationBoard[i][j] == "." && countLiveNeighboursOf == 3) {
-                    line.add("*")
-                } else if (initialGenerationBoard[i][j] == "*" && countLiveNeighboursOf < 2) {
-                    line.add(".")
-                } else if (initialGenerationBoard[i][j] == "*" && countLiveNeighboursOf > 3) {
-                    line.add(".")
-                } else {
-                    line.add(initialGenerationBoard[i][j])
-                }
+                val liveNeighbours = Board(initialGenerationBoard).countNeighboursOf(i, j, "*")
+                val cell = initialGenerationBoard[i][j]
+                line.add(
+                    listOf(BecomesLive(), Underpopulation(), Overcrowding(), None(cell)).first {
+                        it.isApplicable(liveNeighbours)
+                    }.nextGen()
+                )
             }
         }
 
