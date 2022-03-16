@@ -1,7 +1,7 @@
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class BoardTest {
+class FrameTest {
 
     @Test
     fun full() {
@@ -11,7 +11,7 @@ class BoardTest {
             listOf("*", "*", "*"),
         )
 
-        val count = Board(board).countNeighboursOf(1, 1, "*")
+        val count = Frame(board).countLiveNeighboursOf(1, 1)
 
         assertThat(count).isEqualTo(8)
     }
@@ -23,7 +23,7 @@ class BoardTest {
             listOf("*", "*")
         )
 
-        val count = Board(board).countNeighboursOf(0, 0, "*")
+        val count = Frame(board).countLiveNeighboursOf(0, 0)
 
         assertThat(count).isEqualTo(3)
     }
@@ -35,19 +35,7 @@ class BoardTest {
             listOf("*", ".")
         )
 
-        val count = Board(board).countNeighboursOf(1, 1, "*")
-
-        assertThat(count).isEqualTo(3)
-    }
-
-    @Test
-    fun `any char`() {
-        val board = listOf(
-            listOf(".", "X"),
-            listOf("X", "X")
-        )
-
-        val count = Board(board).countNeighboursOf(0, 0, "X")
+        val count = Frame(board).countLiveNeighboursOf(1, 1)
 
         assertThat(count).isEqualTo(3)
     }
@@ -59,7 +47,7 @@ class BoardTest {
             listOf("*", "*", "*")
         )
 
-        val count = Board(board).countNeighboursOf(0, 1, "*")
+        val count = Frame(board).countLiveNeighboursOf(0, 1)
 
         assertThat(count).isEqualTo(5)
     }
@@ -71,7 +59,7 @@ class BoardTest {
             listOf("*", "*", "*")
         )
 
-        val count = Board(board).countNeighboursOf(0, 2, "*")
+        val count = Frame(board).countLiveNeighboursOf(0, 2)
 
         assertThat(count).isEqualTo(3)
     }
