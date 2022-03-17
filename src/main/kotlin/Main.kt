@@ -1,3 +1,4 @@
+import java.lang.System.lineSeparator
 import kotlin.random.Random
 
 fun main() {
@@ -11,10 +12,10 @@ fun main() {
     }
 }
 
-private fun buildBoard(columns: Int, rows: Int) = (1..rows).toList().joinToString("\n") {
-    (1..columns).toList().joinToString("") { if (Random.nextBoolean()) "." else "*" }
+private fun buildBoard(columns: Int, rows: Int) = (1..rows).joinToString("\n") {
+    (1..columns).joinToString("") { if (Random.nextBoolean()) "." else "*" }
 }
 
 private fun clearScreen() {
-    println(System.lineSeparator().repeat(50))
+    println(lineSeparator().repeat(50))
 }
